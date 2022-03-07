@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, combineReducers } from "../redux-nut";
 import promise from "redux-promise";
 
 // 定义了store修改规则
-function countReducer(state = 0, action) {
+export function countReducer(state = 0, action) {
   switch (action.type) {
     case "ADD":
       return state + 1;
@@ -23,7 +23,11 @@ const store = createStore(
   combineReducers({
     count: countReducer,
   }),
-  applyMiddleware(promise, thunk, logger)
+  applyMiddleware(
+    promise,
+    thunk
+    //  logger
+  )
 );
 
 export default store;

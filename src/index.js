@@ -1,8 +1,15 @@
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { Provider } from "react-redux";
+import store from "./store";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
 // const array1 = [1, 2, 3, 4];
 // const reducer = (accumulator, currentValue) => accumulator + currentValue;
