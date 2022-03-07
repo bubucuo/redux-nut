@@ -1,6 +1,8 @@
 import { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+// import { connect } from "react-redux";
+import { connect } from "../react-redux-nut/";
+// import { bindActionCreators } from "redux";
+import { bindActionCreators } from "../redux-nut";
 
 // HOC higer order Component，高阶组件:是个函数，接受组件作为参数，返回新的组件
 export default connect(
@@ -13,20 +15,20 @@ export default connect(
   ({ count }) => ({ count }),
   // mapDispatchToProps function|object
 
-  (dispatch) => {
-    let creators = {
-      add: () => ({ type: "ADD" }),
-      minus: () => ({ type: "MINUS" }),
-    };
+  //   (dispatch) => {
+  //     let creators = {
+  //       add: () => ({ type: "ADD" }),
+  //       minus: () => ({ type: "MINUS" }),
+  //     };
 
-    creators = bindActionCreators(creators, dispatch);
+  //     creators = bindActionCreators(creators, dispatch);
 
-    return { dispatch, ...creators };
-  }
-  //   {
-  //     add: () => ({ type: "ADD" }),
-  //     minus: () => ({ type: "MINUS" }),
+  //     return { dispatch, ...creators };
   //   }
+  {
+    add: () => ({ type: "ADD" }),
+    minus: () => ({ type: "MINUS" }),
+  }
 )(
   class ReactReduxPage extends Component {
     render() {
@@ -35,7 +37,11 @@ export default connect(
       return (
         <div>
           <h3>ReactReduxPage</h3>
-          <button onClick={() => dispatch({ type: "ADD" })}>
+          <button
+            onClick={() => {
+              dispatch({ type: "ADD" });
+            }}
+          >
             dispatch:{count}
           </button>
           <button onClick={add}>add: {count}</button>
