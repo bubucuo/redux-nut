@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from "../redux-nut";
 // import logger from "redux-logger";
 import promise from "redux-promise";
 
+// 定义了store修改规则
 function countReducer(state = 0, action) {
   switch (action.type) {
     case "ADD":
@@ -16,6 +17,7 @@ function countReducer(state = 0, action) {
   }
 }
 
+// 创建store
 const store = createStore(
   countReducer,
   applyMiddleware(promise, thunk, logger)
