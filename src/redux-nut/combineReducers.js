@@ -8,7 +8,7 @@ export default function combineReducers(reducers) {
     for (let key in reducers) {
       const reducer = reducers[key];
       nextState[key] = reducer(state[key], action);
-      hasChanged = nextState[key] !== state[key];
+      hasChanged = hasChanged || nextState[key] !== state[key];
     }
 
     hasChanged =
