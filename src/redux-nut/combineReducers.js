@@ -1,18 +1,18 @@
 export default function combineReducers(reducers) {
-  // reducer
+  // 返回一个总的reducer (prevState, action)=>nextState
   return function combination(state = {}, action) {
     let nextState = {};
     let hasChanged = false;
 
-    // todo 如何得到nextState
-    for (let key in reducers) {
+    for (const key in reducers) {
       const reducer = reducers[key];
       nextState[key] = reducer(state[key], action);
       hasChanged = hasChanged || nextState[key] !== state[key];
     }
 
+    // {a:1, b:1} {a:1}
     hasChanged =
-      hasChanged || Object.keys(reducers).length !== Object.keys(state).length;
+      hasChanged || Object.keys(nextState).length !== Object.keys(state).length;
 
     return hasChanged ? nextState : state;
   };
