@@ -2,7 +2,7 @@
 // import HooksPage from "./pages/HooksPage";
 import { useState } from "react";
 import ReactReduxHookPage from "./pages/ReactReduxHookPage";
-import ReactReduxPage from "./pages/ReactReduxPage";
+// import ReactReduxPage from "./pages/ReactReduxPage";
 
 export default function App(props) {
   const [count, setCount] = useState(0);

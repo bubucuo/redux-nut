@@ -7,6 +7,7 @@ import React, {
   useLayoutEffect,
   useReducer,
   useState,
+  useSyncExternalStore,
 } from "react";
 import { bindActionCreators } from "../redux-nut";
 
@@ -28,7 +29,7 @@ export const connect =
     const store = useContext(Context);
     const { getState, dispatch, subscribe } = store;
 
-    const stateProps = mapStateToProps(getState());
+    // const stateProps = mapStateToProps(getState());
     let dispatchProps = { dispatch };
 
     if (typeof mapDispatchToProps === "function") {
@@ -41,15 +42,23 @@ export const connect =
 
     const forceUpdate = useForceUpdate();
 
-    // DOMeffect
-    useLayoutEffect(() => {
-      const unsubscribe = subscribe(() => {
-        forceUpdate();
-      });
-      return () => {
-        unsubscribe();
-      };
-    }, [subscribe]);
+    // // DOMeffect
+    // useLayoutEffect(() => {
+    //   const unsubscribe = subscribe(() => {
+    //     forceUpdate();
+    //   });
+    //   return () => {
+    //     unsubscribe();
+    //   };
+    // }, [subscribe]);
+
+    const state = useSyncExternalStore(() => {
+      subscribe(forceUpdate);
+    }, getState);
+
+    // console.log("checked", state === getState()); //sy-log
+
+    const stateProps = mapStateToProps(state);
 
     return <WrappedComponent {...props} {...stateProps} {...dispatchProps} />;
   };
@@ -68,19 +77,25 @@ export function useSelector(selector) {
 
   const { getState, subscribe } = store;
 
-  const selectedState = selector(getState());
+  // const selectedState = selector(getState());
 
   const forceUpdate = useForceUpdate();
 
-  // DOMeffect
-  useLayoutEffect(() => {
-    const unsubscribe = subscribe(() => {
-      forceUpdate();
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, [subscribe]);
+  // // DOMeffect
+  // useLayoutEffect(() => {
+  //   const unsubscribe = subscribe(() => {
+  //     forceUpdate();
+  //   });
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, [subscribe]);
+
+  const state = useSyncExternalStore(() => {
+    subscribe(forceUpdate);
+  }, getState);
+
+  const selectedState = selector(state);
 
   return selectedState;
 }
