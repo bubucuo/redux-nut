@@ -47,7 +47,7 @@ function logger({ getState, dispatch }) {
     // 等状态值修改之后，再执行getState，拿到了新的状态值
     const nextState = getState();
 
-    console.log("next state", prevState); //sy-log
+    console.log("next state", nextState); //sy-log
 
     console.log("-----------------------"); //sy-log
 
