@@ -1,4 +1,6 @@
-import {createReducer} from "@reduxjs/toolkit";
+// import {createReducer} from "@reduxjs/toolkit";
+import createReducer from "./createReducer";
+
 import createAction from "./createAction";
 
 export default function createSlice({name, initialState, reducers}) {
