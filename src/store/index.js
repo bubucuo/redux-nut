@@ -1,5 +1,5 @@
 // import { createStore, applyMiddleware, combineReducers } from "redux";
-import { createStore, applyMiddleware, combineReducers } from "../redux-nut";
+import {createStore, applyMiddleware, combineReducers} from "../redux-nut";
 
 // import thunk from "redux-thunk";
 // import logger from "redux-logger";
@@ -32,7 +32,7 @@ const store = createStore(
 
 export default store;
 
-function logger({ getState, dispatch }) {
+function logger({getState, dispatch}) {
   return (next) => (action) => {
     console.log("-----------------------"); //sy-log
 
@@ -55,7 +55,7 @@ function logger({ getState, dispatch }) {
   };
 }
 
-function thunk({ getState, dispatch }) {
+function thunk({getState, dispatch}) {
   return (next) => (action) => {
     if (typeof action === "function") {
       return action(dispatch, getState);

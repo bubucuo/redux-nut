@@ -1,15 +1,15 @@
-import { createRoot } from "react-dom/client";
+import {createRoot} from "react-dom/client";
 import "./index.css";
 import App from "./App";
 // import { Provider } from "react-redux";
-import { Provider } from "./react-redux-nut";
+// import {Provider} from "./react-redux-nut";
 
-import store from "./store";
+// import store from "./store";
 
 createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  // <Provider store={store}>
+  <App />
+  // </Provider>
 );
 
 // const array1 = [1, 2, 3, 4];
