@@ -9,11 +9,11 @@ export default function createSlice({name, initialState, reducers}) {
   const sliceCaseReducersByType = {};
 
   reducerNames.forEach((reducerName) => {
-    const sliceCaseReducersByType = reducers[reducerName];
+    const maybeReducerWithPrepare = reducers[reducerName];
 
     const type = `${name}/${reducerName}`;
 
-    sliceCaseReducersByType[type] = sliceCaseReducersByType;
+    sliceCaseReducersByType[type] = maybeReducerWithPrepare;
     actionCreators[reducerName] = createAction(type);
   });
 
