@@ -79,8 +79,6 @@ export function useSelector(selector) {
 
   // const selectedState = selector(getState());
 
-  const forceUpdate = useForceUpdate();
-
   // // DOMeffect
   // useLayoutEffect(() => {
   //   const unsubscribe = subscribe(() => {
@@ -91,9 +89,11 @@ export function useSelector(selector) {
   //   };
   // }, [subscribe]);
 
-  const state = useSyncExternalStore(() => {
-    subscribe(forceUpdate);
-  }, getState);
+  // const state = useSyncExternalStore(() => {
+  //   subscribe(forceUpdate);
+  // }, getState);
+
+  const state = useSyncExternalStore(subscribe, getState);
 
   const selectedState = selector(state);
 
