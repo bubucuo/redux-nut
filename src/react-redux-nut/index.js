@@ -40,7 +40,9 @@ export const connect =
 
     // const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
-    // // DOMeffect
+    // const forceUpdate = useForceUpdate();
+
+    // DOMeffect
     // useLayoutEffect(() => {
     //   const unsubscribe = subscribe(() => {
     //     forceUpdate();
@@ -51,8 +53,6 @@ export const connect =
     // }, [subscribe]);
 
     const state = useSyncExternalStore(subscribe, getState);
-
-    // console.log("checked", state === getState()); //sy-log
 
     const stateProps = mapStateToProps(state);
 
@@ -75,6 +75,8 @@ export function useSelector(selector) {
 
   // const selectedState = selector(getState());
 
+  // const forceUpdate = useForceUpdate();
+
   // // DOMeffect
   // useLayoutEffect(() => {
   //   const unsubscribe = subscribe(() => {
@@ -84,10 +86,6 @@ export function useSelector(selector) {
   //     unsubscribe();
   //   };
   // }, [subscribe]);
-
-  // const state = useSyncExternalStore(() => {
-  //   subscribe(forceUpdate);
-  // }, getState);
 
   const state = useSyncExternalStore(subscribe, getState);
 
