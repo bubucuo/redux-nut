@@ -40,8 +40,6 @@ export const connect =
 
     // const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
-    const forceUpdate = useForceUpdate();
-
     // // DOMeffect
     // useLayoutEffect(() => {
     //   const unsubscribe = subscribe(() => {
@@ -52,9 +50,7 @@ export const connect =
     //   };
     // }, [subscribe]);
 
-    const state = useSyncExternalStore(() => {
-      subscribe(forceUpdate);
-    }, getState);
+    const state = useSyncExternalStore(subscribe, getState);
 
     // console.log("checked", state === getState()); //sy-log
 
